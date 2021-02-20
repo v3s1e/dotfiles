@@ -50,9 +50,9 @@ local on_attach = function(client, bufnr)
         'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)')
 
     vim.api.nvim_exec([[
-    hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-    hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-    hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+    hi link LspReferenceRead Visual
+    hi link LspReferenceText Visual
+    hi link LspReferenceWrite Visual
     augroup lsp_document_highlight
       autocmd! * <buffer>
       autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
