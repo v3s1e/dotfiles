@@ -1,5 +1,7 @@
 source ~/.config/nvim/plugins.vim
 
+let mapleader = ' '
+
 colorscheme base16-gruvbox-dark-soft
 let base16colorspace=256
 set termguicolors
