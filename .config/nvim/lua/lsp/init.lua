@@ -19,32 +19,32 @@ local on_attach = function(client, bufnr)
                         opts)
     nvim_buf_set_keymap('n', '<C-k>',
                         '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    nvim_buf_set_keymap('n', '<space>wa',
+    nvim_buf_set_keymap('n', '<leader>wa',
                         '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    nvim_buf_set_keymap('n', '<space>wr',
+    nvim_buf_set_keymap('n', '<leader>wr',
                         '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
                         opts)
-    nvim_buf_set_keymap('n', '<space>wl',
+    nvim_buf_set_keymap('n', '<leader>wl',
                         '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
                         opts)
-    nvim_buf_set_keymap('n', '<space>D',
+    nvim_buf_set_keymap('n', '<leader>D',
                         '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    nvim_buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
+    nvim_buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
                         opts)
     nvim_buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    nvim_buf_set_keymap('n', '<space>e',
+    nvim_buf_set_keymap('n', '<leader>e',
                         '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
                         opts)
     nvim_buf_set_keymap('n', '[d',
                         '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     nvim_buf_set_keymap('n', ']d',
                         '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    nvim_buf_set_keymap('n', '<space>q',
+    nvim_buf_set_keymap('n', '<leader>q',
                         '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
-    nvim_buf_set_keymap('n', '<space>f',
+    nvim_buf_set_keymap('n', '<leader>f',
                         '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-    nvim_buf_set_keymap('n', '<space>rf',
+    nvim_buf_set_keymap('n', '<leader>rf',
                         '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
     vim.api.nvim_command(
         'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)')
