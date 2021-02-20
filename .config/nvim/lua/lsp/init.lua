@@ -42,10 +42,10 @@ local on_attach = function(client, bufnr)
     nvim_buf_set_keymap('n', '<space>q',
                         '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
-    nvim_buf_set_keymap("n", "<space>f",
-                        "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    nvim_buf_set_keymap("n", "<space>rf",
-                        "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    nvim_buf_set_keymap('n', '<space>f',
+                        '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    nvim_buf_set_keymap('n', '<space>rf',
+                        '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
     vim.api.nvim_command(
         'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)')
 
