@@ -11,10 +11,10 @@ local on_attach = function(client, bufnr)
     nvim_buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     local opts = {noremap = true, silent = true}
-    nvim_buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>',
+    nvim_buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>',
                         opts)
-    nvim_buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    nvim_buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    nvim_buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    nvim_buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     nvim_buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>',
                         opts)
     nvim_buf_set_keymap('n', '<C-k>',
