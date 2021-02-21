@@ -20,8 +20,5 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
-Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
