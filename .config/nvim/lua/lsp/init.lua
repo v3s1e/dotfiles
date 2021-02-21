@@ -61,6 +61,9 @@ local on_attach = function(client, bufnr)
   ]], false)
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 lsp.diagnosticls.setup({
     filetypes = {
         'lua', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact',
@@ -131,6 +134,7 @@ lsp.diagnosticls.setup({
             html = 'prettier'
         }
     },
+    capabilities = capabilities,
     on_attach = on_attach
 })
 
@@ -154,6 +158,7 @@ lsp.sumneko_lua.setup({
             }
         }
     },
+    capabilities = capabilities,
     on_attach = on_attach
 })
 
@@ -161,4 +166,6 @@ local servers = {
     'vimls', 'bashls', 'tsserver', 'jsonls', 'cssls', 'html', 'pyls', 'jdtls',
     'rust_analyzer', 'clangd'
 }
-for _, server in ipairs(servers) do lsp[server].setup({on_attach = on_attach}) end
+for _, server in ipairs(servers) do
+    lsp[server].setup({capabilities = capabilities, on_attach = on_attach})
+end
