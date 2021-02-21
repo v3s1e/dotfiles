@@ -2,7 +2,18 @@ local compe = require('compe')
 
 compe.setup({
     enabled = true,
-    source = {path = true, buffer = true, nvim_lsp = true}
+    source = {
+        path = true,
+        buffer = true,
+        tags = true,
+        spell = true,
+        calc = true,
+        omni = true,
+        nvim_lsp = true,
+        nvim_lua = true,
+        vsnip = true,
+        nvim_treesitter = true
+    }
 })
 
 local t = function(str)
