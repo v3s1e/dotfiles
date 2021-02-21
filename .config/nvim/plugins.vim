@@ -20,5 +20,7 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 call plug#end()
