@@ -66,74 +66,35 @@ local on_attach = function(client, bufnr)
     end
 end
 
-lsp.diagnosticls.setup({
+local linters = {
+    eslint_d = require('efm/linters/eslint_d'),
+    markdownlint = require('efm/linters/markdownlint')
+}
+
+local formatters = {
+    luaFormat = require('efm/formatters/lua-format'),
+    prettier = require('efm/formatters/prettier')
+}
+
+lsp.efm.setup({
     filetypes = {
         'lua', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact',
         'json', 'css', 'sass', 'scss', 'html', 'markdown'
     },
-    init_options = {
-        linters = {
-            eslint = {
-                command = 'eslint',
-                rootPatterns = {'.git'},
-                debounce = 100,
-                args = {
-                    '--stdin', '--stdin-filename', '%filepath', '--format',
-                    'json'
-                },
-                sourceName = 'eslint',
-                parseJson = {
-                    errorsRoot = '[0].messages',
-                    line = 'line',
-                    column = 'column',
-                    endLine = 'endLine',
-                    endColumn = 'endColumn',
-                    message = '[eslint] ${message} [${ruleId}]',
-                    security = 'severity'
-                },
-                securities = {[2] = 'error', [1] = 'warning'}
-            },
-            markdownlint = {
-                command = 'markdownlint',
-                rootPatterns = {'.git'},
-                isStderr = true,
-                debounce = 100,
-                args = {'--stdin'},
-                offsetLine = 0,
-                offsetColumn = 0,
-                sourceName = 'markdownlint',
-                securities = {undefined = 'hint'},
-                formatLines = 1,
-                formatPattern = {
-                    '^.*:(\\d+)\\s+(.*)$', {line = 1, column = -1, message = 2}
-                }
-            }
-        },
-        filetypes = {
-            javascript = 'eslint',
-            javascriptreact = 'eslint',
-            typescript = 'eslint',
-            typescriptreact = 'eslint',
-            markdown = 'markdownlint'
-        },
-        formatters = {
-            ['lua-format'] = {command = 'lua-format', args = {'-i'}},
-            prettier = {
-                command = 'prettier',
-                args = {'--stdin-filepath', '%filename'}
-            }
-        },
-        formatFiletypes = {
-            lua = 'lua-format',
-            javascript = 'prettier',
-            javascriptreact = 'prettier',
-            typescript = 'prettier',
-            typescriptreact = 'prettier',
-            json = 'prettier',
-            css = 'prettier',
-            sass = 'prettier',
-            scss = 'prettier',
-            html = 'prettier'
+    init_options = {documentFormatting = true},
+    settings = {
+        languages = {
+            lua = {formatters.luaFormat},
+            javascript = {linters.eslint_d, formatters.prettier},
+            javascriptreact = {linters.eslint_d, formatters.prettier},
+            typescript = {linters.eslint_d, formatters.prettier},
+            typescriptreact = {linters.eslint_d, formatters.prettier},
+            json = {formatters.prettier},
+            css = {formatters.prettier},
+            sass = {formatters.prettier},
+            scss = {formatters.prettier},
+            html = {formatters.prettier},
+            markdown = {linters.markdownlint}
         }
     },
     on_attach = on_attach
