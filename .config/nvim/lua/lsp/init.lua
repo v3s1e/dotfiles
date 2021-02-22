@@ -66,6 +66,9 @@ local on_attach = function(client, bufnr)
     end
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local linters = {
     eslint_d = require('efm/linters/eslint_d'),
     markdownlint = require('efm/linters/markdownlint')
@@ -97,6 +100,7 @@ lsp.efm.setup({
             markdown = {linters.markdownlint}
         }
     },
+    capabilities = capabilities,
     on_attach = on_attach
 })
 
@@ -120,6 +124,7 @@ lsp.sumneko_lua.setup({
             }
         }
     },
+    capabilities = capabilities,
     on_attach = on_attach
 })
 
@@ -127,4 +132,6 @@ local servers = {
     'vimls', 'bashls', 'tsserver', 'jsonls', 'cssls', 'html', 'pyls', 'jdtls',
     'rust_analyzer', 'clangd'
 }
-for _, server in ipairs(servers) do lsp[server].setup({on_attach = on_attach}) end
+for _, server in ipairs(servers) do
+    lsp[server].setup({capabilities = capabilities, on_attach = on_attach})
+end
