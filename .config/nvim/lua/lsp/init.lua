@@ -1,6 +1,6 @@
 local lsp = require('lspconfig')
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -38,23 +38,30 @@ local on_attach = function(_, bufnr)
     buf_set_keymap('n', '<leader>q',
                    '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
-    buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>',
-                   opts)
-    buf_set_keymap('n', '<leader>rf',
-                   '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
-    vim.api.nvim_command(
-        'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)')
+    if client.resolved_capabilities.document_formatting then
+        buf_set_keymap('n', '<leader>f',
+                       '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+        vim.api.nvim_command(
+            'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)')
+    end
 
-    vim.api.nvim_exec([[
-    hi link LspReferenceRead Visual
-    hi link LspReferenceText Visual
-    hi link LspReferenceWrite Visual
-    augroup lsp_document_highlight
-      autocmd! * <buffer>
-      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    augroup END
-  ]], false)
+    if client.resolved_capabilities.document_range_formatting then
+        buf_set_keymap('n', '<leader>rf',
+                       '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
+    end
+
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec([[
+            hi link LspReferenceRead Visual
+            hi link LspReferenceText Visual
+            hi link LspReferenceWrite Visual
+            augroup lsp_document_highlight
+                autocmd! * <buffer>
+                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]], false)
+    end
 end
 
 lsp.diagnosticls.setup({
