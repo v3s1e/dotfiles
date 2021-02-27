@@ -9,6 +9,8 @@ set termguicolors
 source ~/.config/nvim/plugins/lsp.vim
 source ~/.config/nvim/plugins/completion.vim
 source ~/.config/nvim/plugins/treesitter.vim
+source ~/.config/nvim/plugins/nerdtree.vim
+source ~/.config/nvim/plugins/tagbar.vim
 source ~/.config/nvim/plugins/airline.vim
 
 let g:python_host_prog = '~/.local/share/nvim/python/bin/python'
@@ -37,10 +39,3 @@ set incsearch
 set expandtab
 set shiftwidth=2
 set tabstop=2
-
-map <F1> :Files<CR>
-map! <F1> <Esc>:Files<CR>
-map <F2> :Buffers<CR>
-map <F3> :Windows<CR>
-map <F4> :NERDTreeToggle<CR>
-map <F5> :TagbarToggle<CR>
