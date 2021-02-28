@@ -39,17 +39,14 @@ local on_attach = function(client, bufnr)
                    opts)
     buf_set_keymap('n', '<leader>q',
                    '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>',
+                   opts)
+    buf_set_keymap('n', '<leader>rf',
+                   '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
 
     if client.resolved_capabilities.document_formatting then
-        buf_set_keymap('n', '<leader>f',
-                       '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
         vim.api.nvim_command(
             'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)')
-    end
-
-    if client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap('n', '<leader>rf',
-                       '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
     end
 
     if client.resolved_capabilities.document_highlight then
