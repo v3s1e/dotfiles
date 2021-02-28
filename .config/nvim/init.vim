@@ -7,6 +7,7 @@ let base16colorspace=256
 set termguicolors
 
 source ~/.config/nvim/plugins/lsp.vim
+source ~/.config/nvim/plugins/saga.vim
 source ~/.config/nvim/plugins/completion.vim
 source ~/.config/nvim/plugins/treesitter.vim
 source ~/.config/nvim/plugins/telescope.vim
