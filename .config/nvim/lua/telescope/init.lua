@@ -11,4 +11,3 @@ set_keymap('n', '<leader>d', '<cmd>Telescope lsp_document_symbols<CR>', opts)
 set_keymap('n', '<leader>w', '<cmd>Telescope lsp_workspace_symbols<CR>', opts)
 
 set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-set_keymap('n', '<leader>ga', '<cmd>Telescope lsp_code_actions<CR>', opts)
