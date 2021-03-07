@@ -12,3 +12,4 @@ set_keymap('n', '<C-b>',
 set_keymap('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
 set_keymap('n', 'K', '<cmd>Lspsaga hover_doc<CR>', opts)
 set_keymap('n', '<leader>k', '<cmd>Lspsaga signature_help<CR>', opts)
+set_keymap('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', opts)
